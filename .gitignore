@@ -22,6 +22,9 @@ DerivedData
 *.xcuserstate
 ios/.xcode.env.local
 
+#firebase keys
+.env
+
 # Android/IntelliJ
 #
 build/

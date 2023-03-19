@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1027043919366",
+    "project_id": "fir-authentication-103d9",
+    "storage_bucket": "fir-authentication-103d9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1027043919366:android:d20002e60f0d34b9996587",
+        "android_client_info": {
+          "package_name": "com.tabernacle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1027043919366-orboquk60q94tb85eds13i1e3e147tkg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tabernacle",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "1027043919366-447750v7uibt9opppjd82q2lgs7c6jd4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwNR9LKghhCw8kbFcUPaM8F7wF-q3KJc8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1027043919366-447750v7uibt9opppjd82q2lgs7c6jd4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

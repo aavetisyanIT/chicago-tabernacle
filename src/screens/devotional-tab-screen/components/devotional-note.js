@@ -1,24 +1,13 @@
-import React, {
-  useState,
-  useContext,
-  useCallback,
-  useEffect,
-  memo,
-} from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, {useState, useContext, useCallback, useEffect, memo} from 'react';
+import {StyleSheet, View} from 'react-native';
 
 import CustomButton from '../../../custom-components/custom-button';
 import CustomParagraphHtmlToText from '../../../custom-components/custom-paragraph-html-to-text-component';
-import { actionTypes } from '../../../context/action.types';
-import { AppContext } from '../../../context/app.context';
+import {actionTypes} from '../../../context/action.types';
+import {AppContext} from '../../../context/app.context';
 import CustomEditButton from '../../../custom-components/custom-edit-button';
 
-function DevotionalNote({
-  item,
-  showModal,
-  setCurrentParagraphHTML,
-  editNote,
-}) {
+function DevotionalNote({item, showModal, setCurrentParagraphHTML, editNote}) {
   const [, dispatch] = useContext(AppContext);
   const [editText, setEditText] = useState();
 
@@ -83,5 +72,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     margin: 5,
   },
-  buttonText: { color: '#bc9665', fontSize: 15, marginHorizontal: 5 },
+  buttonText: {color: '#bc9665', fontSize: 15, marginHorizontal: 5},
 });

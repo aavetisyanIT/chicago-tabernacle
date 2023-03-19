@@ -1,4 +1,4 @@
-import { videoPlayerActionTypes } from './video.player.action.types';
+import {videoPlayerActionTypes} from './video.player.action.types';
 
 const videoPlayerReducer = (state, action) => {
   switch (action.type) {

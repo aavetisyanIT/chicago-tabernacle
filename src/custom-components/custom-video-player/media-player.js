@@ -1,22 +1,16 @@
 import React from 'react';
 import Video from 'react-native-video';
 
-import { AppContext } from '../../context/app.context';
-import { actionTypes } from '../../context/action.types';
-import { VideoPlayerContext } from './video-player-context/video.player.context';
-import { videoPlayerActionTypes } from './video-player-context/video.player.action.types';
+import {AppContext} from '../../context/app.context';
+import {actionTypes} from '../../context/action.types';
+import {VideoPlayerContext} from './video-player-context/video.player.context';
+import {videoPlayerActionTypes} from './video-player-context/video.player.action.types';
 
 function MediaPlayer() {
   const [state, dispatch] = React.useContext(AppContext);
-  const [, dispatchToVideoPlayer] = React.useContext(
-    VideoPlayerContext,
-  );
-  const {
-    isVideoPaused,
-    articleVideoUrl,
-    articleImageUrl,
-    isFullScreenVideo,
-  } = state;
+  const [, dispatchToVideoPlayer] = React.useContext(VideoPlayerContext);
+  const {isVideoPaused, articleVideoUrl, articleImageUrl, isFullScreenVideo} =
+    state;
   const videoPlayer = React.useRef(null);
 
   React.useEffect(() => {
@@ -26,13 +20,13 @@ function MediaPlayer() {
     });
   }, [videoPlayer, dispatchToVideoPlayer]);
 
-  const handleOnLoad = ({ duration }) => {
+  const handleOnLoad = ({duration}) => {
     dispatchToVideoPlayer({
       type: videoPlayerActionTypes.SET_VIDEO_DURATION,
       payload: duration,
     });
   };
-  const handleOnProgress = ({ currentTime }) => {
+  const handleOnProgress = ({currentTime}) => {
     dispatchToVideoPlayer({
       type: videoPlayerActionTypes.SET_CURRENT_VIDEO_PLAY_TIME,
       payload: currentTime,

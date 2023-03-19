@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable, Text } from 'react-native';
+import {Pressable, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 function CustomButton({
@@ -12,7 +12,7 @@ function CustomButton({
   setCurrentHTML,
   currentHTML,
 }) {
-  const handlePress = (currentHTML) => {
+  const handlePress = currentHTML => {
     onPress();
     currentHTML ? setCurrentHTML(currentHTML) : null;
   };

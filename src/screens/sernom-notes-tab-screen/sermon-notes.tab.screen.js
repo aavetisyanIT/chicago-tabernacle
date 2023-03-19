@@ -1,21 +1,15 @@
-import React, {
-  useState,
-  useRef,
-  useEffect,
-  useContext,
-} from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
+import React, {useState, useRef, useEffect, useContext} from 'react';
+import {View, StyleSheet, FlatList} from 'react-native';
 import database from '@react-native-firebase/database';
 
 import SermonNote from './components/sermon-note';
 import SermonNoteListHeader from './components/sermon-note-list-header';
 import CustomAddNoteModal from '../../custom-components/custom-add-note-modal';
-import { AppContext } from '../../context/app.context';
-import { actionTypes } from '../../context/action.types';
+import {AppContext} from '../../context/app.context';
+import {actionTypes} from '../../context/action.types';
 
-function SermonNotesTab({ route }) {
-  const [{ isFullScreenVideo, user, userUid }, dispatch] =
-    useContext(AppContext);
+function SermonNotesTab({route}) {
+  const [{isFullScreenVideo, user, userUid}, dispatch] = useContext(AppContext);
 
   const [modalVisible, setModalVisible] = useState(false);
   const [sermonEditNote, serSermonEditNote] = useState('');
@@ -27,23 +21,19 @@ function SermonNotesTab({ route }) {
 
   const flatListRef = useRef();
 
-  const { article } = route.params;
+  const {article} = route.params;
   const PARAGRAPHDATA = article.paragraphs;
 
   useEffect(() => {
     database()
       .ref(`/users/${userUid}/articles/${article.id}/notes`)
       .once('value')
-      .then((val) => {
+      .then(val => {
         if (val.val()) setSermonNotes(val.val());
       });
   }, [article.id, userUid, isDataChanged]);
 
-  const showModal = ({
-    sermonParagId,
-    sermonEditNote,
-    invokedBy,
-  }) => {
+  const showModal = ({sermonParagId, sermonEditNote, invokedBy}) => {
     setInvokedBy(invokedBy);
     if (sermonParagId && sermonEditNote) {
       setSermonOpenedParagId(sermonParagId);
@@ -56,7 +46,7 @@ function SermonNotesTab({ route }) {
     setModalVisible(false);
   };
 
-  const renderItem = (props) => {
+  const renderItem = props => {
     let currentNoteText = '';
     if (sermonNotes[props.item.id]) {
       currentNoteText = sermonNotes[props.item.id].text;
@@ -79,10 +69,8 @@ function SermonNotesTab({ route }) {
         payload: article.id,
       });
       try {
-        const userArticlesRef = database().ref(
-          `/users/${userUid}/articles`,
-        );
-        userArticlesRef.child(article.id).update({ read: true });
+        const userArticlesRef = database().ref(`/users/${userUid}/articles`);
+        userArticlesRef.child(article.id).update({read: true});
       } catch (error) {
         console.log('SermonNotesTab useEffect');
         console.log('Error: ', error.message);
@@ -115,16 +103,14 @@ function SermonNotesTab({ route }) {
         HTML={currentSermonHTML}
       />
       <FlatList
-        ListHeaderComponent={
-          <SermonNoteListHeader article={article} />
-        }
+        ListHeaderComponent={<SermonNoteListHeader article={article} />}
         initialNumToRender={8}
         maxToRenderPerBatch={10}
         ref={flatListRef}
         data={PARAGRAPHDATA}
         renderItem={renderItem}
         scrollEnabled={!isFullScreenVideo}
-        keyExtractor={(item) => item.id}
+        keyExtractor={item => item.id}
         style={!isFullScreenVideo && styles.flatList}
       />
     </View>
@@ -138,5 +124,5 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  flatList: { marginBottom: 15 },
+  flatList: {marginBottom: 15},
 });

@@ -1,26 +1,15 @@
-import React, {
-  useContext,
-  useState,
-  useEffect,
-  useCallback,
-  memo,
-} from 'react';
-import { View, StyleSheet } from 'react-native';
+import React, {useContext, useState, useEffect, useCallback, memo} from 'react';
+import {View, StyleSheet} from 'react-native';
 
 import HiddenText from './hidden-text';
 import CustomButton from '../../../custom-components/custom-button';
 import CustomParagraphHtmlToText from '../../../custom-components/custom-paragraph-html-to-text-component';
 import CustomImage from '../../../custom-components/custom-image';
-import { AppContext } from '../../../context/app.context';
-import { actionTypes } from '../../../context/action.types';
+import {AppContext} from '../../../context/app.context';
+import {actionTypes} from '../../../context/action.types';
 import CustomEditButton from '../../../custom-components/custom-edit-button';
 
-const SermonNote = ({
-  item,
-  showModal,
-  setCurrentSermonHTML,
-  editNote,
-}) => {
+const SermonNote = ({item, showModal, setCurrentSermonHTML, editNote}) => {
   const [, dispatch] = useContext(AppContext);
   const [editText, setEditText] = useState();
 
@@ -46,18 +35,12 @@ const SermonNote = ({
     paragraphContent = (
       <CustomParagraphHtmlToText paragraphHtml={PARAGRAPHHTML} />
     );
-  } else if (
-    item.actionType === 'hiddenText' &&
-    item.type === 'action'
-  ) {
+  } else if (item.actionType === 'hiddenText' && item.type === 'action') {
     paragraphContent = (
       <HiddenText text={item.text} hiddenText={item.actionString} />
     );
     // remove "%@" and add hidden text when open custom-add-note-modal for hidden-text component
-    PARAGRAPHHTML = PARAGRAPHHTML.replace(
-      '%@',
-      ` ${item.actionString} `,
-    );
+    PARAGRAPHHTML = PARAGRAPHHTML.replace('%@', ` ${item.actionString} `);
   } else if (item.type === 'image') {
     paragraphContent = <CustomImage url={item.mediaObject.url} />;
   }
@@ -107,5 +90,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     margin: 5,
   },
-  buttonText: { color: '#bc9665', fontSize: 15, marginHorizontal: 5 },
+  buttonText: {color: '#bc9665', fontSize: 15, marginHorizontal: 5},
 });

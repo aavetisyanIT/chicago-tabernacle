@@ -1,12 +1,12 @@
 import React from 'react';
-import { Linking, StyleSheet, Text } from 'react-native';
-import { TouchableRipple } from 'react-native-paper';
+import {Linking, StyleSheet, Text} from 'react-native';
+import {TouchableRipple} from 'react-native-paper';
 import FastImage from 'react-native-fast-image';
 
 import CustomCard from '../../../custom-components/custom-card';
-import { getAllArticles } from '../../../utils/api';
+import {getAllArticles} from '../../../utils/api';
 
-function NewsCard({ announcement, navigation, announcementData }) {
+function NewsCard({announcement, navigation, announcementData}) {
   const [articles, setArticles] = React.useState({});
 
   // Fetch all articles
@@ -18,20 +18,15 @@ function NewsCard({ announcement, navigation, announcementData }) {
     fetchData();
   }, []);
 
-  const findArticleByAnnouncementObjectId = (
-    announcementData,
-    articles,
-  ) => {
+  const findArticleByAnnouncementObjectId = (announcementData, articles) => {
     const articleId = announcementData.id;
     if (announcementData.type === 'devo') {
       return articles.items.find(
-        (article) => article.devoContent[0].id === articleId,
+        article => article.devoContent[0].id === articleId,
       );
     }
     if (announcementData.type === 'article') {
-      return articles.items.find(
-        (article) => article.id === articleId,
-      );
+      return articles.items.find(article => article.id === articleId);
     }
   };
 
@@ -68,8 +63,7 @@ function NewsCard({ announcement, navigation, announcementData }) {
         borderless
         centered
         onPress={handlePress}
-        rippleColor="rgba(0, 0, 0, .32)"
-      >
+        rippleColor="rgba(0, 0, 0, .32)">
         <>
           <FastImage
             source={{
@@ -79,9 +73,7 @@ function NewsCard({ announcement, navigation, announcementData }) {
             style={styles.image}
           />
           <Text style={styles.title}>{announcement.item.title}</Text>
-          <Text style={styles.description}>
-            {announcement.item.desc}
-          </Text>
+          <Text style={styles.description}>{announcement.item.desc}</Text>
         </>
       </TouchableRipple>
     </CustomCard>

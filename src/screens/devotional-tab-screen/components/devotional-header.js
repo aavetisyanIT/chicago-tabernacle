@@ -1,9 +1,9 @@
 import React from 'react';
-import { Text, StyleSheet } from 'react-native';
-import { Divider } from 'react-native-paper';
+import {Text, StyleSheet} from 'react-native';
+import {Divider} from 'react-native-paper';
 import FastImage from 'react-native-fast-image';
 
-function DevotionalHeader({ headLine, imageUrl }) {
+function DevotionalHeader({headLine, imageUrl}) {
   return (
     <>
       <FastImage
@@ -23,8 +23,8 @@ function DevotionalHeader({ headLine, imageUrl }) {
 export default DevotionalHeader;
 
 const styles = StyleSheet.create({
-  image: { height: 250, width: '100%' },
-  headLine: { margin: 15, fontFamily: 'Roboto-Light', fontSize: 20 },
+  image: {height: 250, width: '100%'},
+  headLine: {margin: 15, fontFamily: 'Roboto-Light', fontSize: 20},
   audioButton: {
     flexDirection: 'row',
     backgroundColor: '#fff',
@@ -36,5 +36,5 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto-Medium',
     marginHorizontal: 5,
   },
-  divider: { marginBottom: 15, height: 3 },
+  divider: {marginBottom: 15, height: 3},
 });

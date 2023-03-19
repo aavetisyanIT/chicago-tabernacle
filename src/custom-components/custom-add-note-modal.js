@@ -1,17 +1,12 @@
-import React, {
-  useState,
-  useContext,
-  useMemo,
-  useEffect,
-} from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, {useState, useContext, useMemo, useEffect} from 'react';
+import {View, Text, StyleSheet} from 'react-native';
 import Modal from 'react-native-modal';
 import database from '@react-native-firebase/database';
 import ModalTextInput from './modal-text-input';
 
 import CustomButton from './custom-button';
 import CustomParagraphHtmlToText from './custom-paragraph-html-to-text-component';
-import { AppContext } from '../context/app.context';
+import {AppContext} from '../context/app.context';
 
 function CustomAddNoteModal({
   modalVisible,
@@ -40,7 +35,7 @@ function CustomAddNoteModal({
     setUserNote(modalEditText);
   }, [modalEditText]);
 
-  const handleChangeText = (text) => setUserNote(text);
+  const handleChangeText = text => setUserNote(text);
   const currentArticleId = useMemo(() => {
     if (articleType === 'devotional') {
       return currentDevotionalId;
@@ -111,8 +106,7 @@ function CustomAddNoteModal({
       animationOutTiming={1200}
       animationInTiming={700}
       backdropTransitionOutTiming={0}
-      onBackdropPress={onPressDoneButton}
-    >
+      onBackdropPress={onPressDoneButton}>
       <View style={styles.modal}>
         {user ? (
           <>
@@ -120,7 +114,7 @@ function CustomAddNoteModal({
             <ModalTextInput
               placeholder={placeholder}
               value={userNote}
-              onChangeText={(text) => handleChangeText(text)}
+              onChangeText={text => handleChangeText(text)}
             />
             <CustomButton
               onPress={onPressDoneButton}
@@ -131,9 +125,7 @@ function CustomAddNoteModal({
           </>
         ) : (
           <>
-            <Text style={styles.notLoggedInText}>
-              You are not signed in
-            </Text>
+            <Text style={styles.notLoggedInText}>You are not signed in</Text>
             <CustomButton
               onPress={hideModal}
               title="OK"
@@ -173,5 +165,5 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     color: '#fff',
   },
-  notLoggedInText: { margin: 10, fontSize: 16 },
+  notLoggedInText: {margin: 10, fontSize: 16},
 });

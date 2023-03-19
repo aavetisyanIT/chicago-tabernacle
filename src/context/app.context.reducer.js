@@ -1,13 +1,13 @@
-import { actionTypes } from './action.types';
+import {actionTypes} from './action.types';
 
 const reducer = (state, action) => {
   switch (action.type) {
     case actionTypes.SET_USER:
-      return { ...state, user: action.payload };
+      return {...state, user: action.payload};
     case actionTypes.SET_INITIALIZING_AUTH:
-      return { ...state, initializingAuth: action.payload };
+      return {...state, initializingAuth: action.payload};
     case actionTypes.SET_FULLSCREEN_VIDEO:
-      return { ...state, isFullScreenVideo: action.payload };
+      return {...state, isFullScreenVideo: action.payload};
     case actionTypes.TOGGLE_FULLSCREEN_VIDEO:
       return {
         ...state,
@@ -19,11 +19,11 @@ const reducer = (state, action) => {
         isVideoPaused: !state.isVideoPaused,
       };
     case actionTypes.SET_PAUSE_VIDEO:
-      return { ...state, isVideoPaused: action.payload };
+      return {...state, isVideoPaused: action.payload};
     case actionTypes.TOGGLE_OVERLAY_VIEW:
-      return { ...state, isOverlayView: !state.isOverlayView };
+      return {...state, isOverlayView: !state.isOverlayView};
     case actionTypes.SET_OVERLAY_VIEW:
-      return { ...state, isOverlayView: action.payload };
+      return {...state, isOverlayView: action.payload};
     case actionTypes.SET_SCREEN_DIMENSIONS:
       return {
         ...state,
@@ -53,15 +53,15 @@ const reducer = (state, action) => {
         isTrackPlaying: action.payload,
       };
     case actionTypes.SET_CURRENT_DEVOTIONAL_ID:
-      return { ...state, currentDevotionalId: action.payload };
+      return {...state, currentDevotionalId: action.payload};
     case actionTypes.SET_CURRENT_DEVOTIONAL_PARAG_ID:
-      return { ...state, currentDevotionalParagId: action.payload };
+      return {...state, currentDevotionalParagId: action.payload};
     case actionTypes.SET_CURRENT_SERMON_ID:
-      return { ...state, currentSermonId: action.payload };
+      return {...state, currentSermonId: action.payload};
     case actionTypes.SET_CURRENT_SERMON_PARAG_ID:
-      return { ...state, currentSermonParagId: action.payload };
+      return {...state, currentSermonParagId: action.payload};
     case actionTypes.SET_USER_UID:
-      return { ...state, userUid: action.payload };
+      return {...state, userUid: action.payload};
     default:
       throw new Error();
   }

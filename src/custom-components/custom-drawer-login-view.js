@@ -1,11 +1,11 @@
-import { GoogleSigninButton } from '@react-native-google-signin/google-signin';
+import {GoogleSigninButton} from '@react-native-google-signin/google-signin';
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { Avatar, Button } from 'react-native-paper';
-import { AuthContext } from '../authentication/AuthProvider';
+import {View, StyleSheet} from 'react-native';
+import {Avatar, Button} from 'react-native-paper';
+import {AuthContext} from '../authentication/AuthProvider';
 
-function CustomDrawerLoginView({ user, initializing }) {
-  const { onGoogleSignInPress, onGoogleSignOutPress } =
+function CustomDrawerLoginView({user, initializing}) {
+  const {onGoogleSignInPress, onGoogleSignOutPress} =
     React.useContext(AuthContext);
   const isloggedIn = user && !initializing;
 
@@ -13,9 +13,7 @@ function CustomDrawerLoginView({ user, initializing }) {
     <View style={styles.container}>
       <Avatar.Image
         source={
-          isloggedIn
-            ? { uri: user.photo }
-            : require('../assets/demo_icon.png')
+          isloggedIn ? {uri: user.photo} : require('../assets/demo_icon.png')
         }
         size={45}
         style={styles.icon}
@@ -25,8 +23,7 @@ function CustomDrawerLoginView({ user, initializing }) {
           mode="outlined"
           color="#787879"
           uppercase
-          onPress={onGoogleSignOutPress}
-        >
+          onPress={onGoogleSignOutPress}>
           Sign Out
         </Button>
       ) : (
@@ -54,5 +51,5 @@ const styles = StyleSheet.create({
   icon: {
     marginBottom: 15,
   },
-  googleSignInButton: { width: '80%', height: 48 },
+  googleSignInButton: {width: '80%', height: 48},
 });

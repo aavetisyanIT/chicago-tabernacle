@@ -1,10 +1,10 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import {createStackNavigator} from '@react-navigation/stack';
 
 import DevotionalTab from '../screens/devotional-tab-screen/devotional.tab.screen';
 import LazyPlaceholder from './components/lazy-placeholder.component';
 
-const { Navigator, Screen } = createStackNavigator();
+const {Navigator, Screen} = createStackNavigator();
 
 function CustomPushScreensStack() {
   return (

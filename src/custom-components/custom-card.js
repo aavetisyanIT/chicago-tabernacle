@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import {StyleSheet, View} from 'react-native';
 
-function CustomCard({ children }) {
+function CustomCard({children}) {
   return (
     <View style={styles.card}>
       <View style={styles.cardContent}>{children}</View>
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 12,
     borderRadius: 5,
     elevation: 5,
-    shadowOffset: { width: 1, height: 1 },
+    shadowOffset: {width: 1, height: 1},
     shadowColor: '#333',
     shadowOpacity: 0.1,
     shadowRadius: 2,

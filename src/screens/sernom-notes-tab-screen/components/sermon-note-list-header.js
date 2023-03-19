@@ -1,14 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import { Divider } from 'react-native-paper';
+import React, {useContext, useEffect, useState} from 'react';
+import {Text, View, StyleSheet} from 'react-native';
+import {Divider} from 'react-native-paper';
 
 import FastImage from 'react-native-fast-image';
 import CustomTrackPlayer from '../../../custom-components/custom-track-player';
 import CustomVideoPlayer from './../../../custom-components/custom-video-player/custom-video-player';
-import { AppContext } from './../../../context/app.context';
-import { actionTypes } from './../../../context/action.types';
+import {AppContext} from './../../../context/app.context';
+import {actionTypes} from './../../../context/action.types';
 
-const SermonNoteListHeader = ({ article }) => {
+const SermonNoteListHeader = ({article}) => {
   const [audioPlayerVisible, setAudioPlayerVisible] = useState(false);
   const [, dispatch] = useContext(AppContext);
 
@@ -32,8 +32,7 @@ const SermonNoteListHeader = ({ article }) => {
     });
   }, [dispatch, sermonImage, videoUrl]);
 
-  let articleHasAudio =
-    article.audio?.type === 'audio' && article.audio;
+  let articleHasAudio = article.audio?.type === 'audio' && article.audio;
 
   return (
     <>
@@ -73,8 +72,8 @@ const SermonNoteListHeader = ({ article }) => {
 export default SermonNoteListHeader;
 
 const styles = StyleSheet.create({
-  image: { height: 250, width: '100%' },
-  headerContent: { paddingBottom: 0, padding: 13 },
-  description: { fontFamily: 'Roboto-Thin' },
-  divider: { marginBottom: 15, height: 3 },
+  image: {height: 250, width: '100%'},
+  headerContent: {paddingBottom: 0, padding: 13},
+  description: {fontFamily: 'Roboto-Thin'},
+  divider: {marginBottom: 15, height: 3},
 });

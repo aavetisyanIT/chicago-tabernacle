@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import Modal from 'react-native-modal';
 import CustomButton from '../../custom-components/custom-button';
 
@@ -58,5 +58,5 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     color: '#fff',
   },
-  warningText: { margin: 10, fontSize: 16 },
+  warningText: {margin: 10, fontSize: 16},
 });

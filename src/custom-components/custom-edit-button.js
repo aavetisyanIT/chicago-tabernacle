@@ -1,5 +1,5 @@
-import React, { memo } from 'react';
-import { View, Text, StyleSheet, Pressable } from 'react-native';
+import React, {memo} from 'react';
+import {View, Text, StyleSheet, Pressable} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
 const CustomEditButton = ({
@@ -10,7 +10,7 @@ const CustomEditButton = ({
   sermonParagId,
   devoParagId,
 }) => {
-  const handlePress = (currentHTML) => {
+  const handlePress = currentHTML => {
     currentHTML ? setCurrentSermonHTML(currentHTML) : null;
     if (sermonParagId && editText) {
       return showModal({
@@ -34,10 +34,7 @@ const CustomEditButton = ({
   };
 
   return (
-    <Pressable
-      onPress={() => handlePress(paragHTML)}
-      style={styles.container}
-    >
+    <Pressable onPress={() => handlePress(paragHTML)} style={styles.container}>
       <Text style={styles.noteText}>{editText}</Text>
       <View style={styles.button}>
         <Icon name="edit" size={18} color="#bc9665" />

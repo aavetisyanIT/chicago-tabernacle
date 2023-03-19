@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import {createStackNavigator} from '@react-navigation/stack';
 
 import DrawerNavigator from './DrawerNavigator';
 import TopTabsSermonStack from './TopTabsSermonStack';
@@ -8,7 +8,7 @@ import CustomPushScreensStack from './CustomPushScreensStack';
 // Currently not used
 // import NonLoggedInModal from './components/non-logged-in-modal';
 
-const { Navigator, Screen } = createStackNavigator();
+const {Navigator, Screen} = createStackNavigator();
 
 function RootStack() {
   return (
@@ -16,13 +16,10 @@ function RootStack() {
       <Screen
         name="DrawerNavigator"
         component={DrawerNavigator}
-        options={{ headerShown: false }}
+        options={{headerShown: false}}
       />
       <Screen name="TopTabsStack" component={TopTabsStack} />
-      <Screen
-        name="TopTabsSermonStack"
-        component={TopTabsSermonStack}
-      />
+      <Screen name="TopTabsSermonStack" component={TopTabsSermonStack} />
       <Screen
         name="CustomPushScreensStack"
         component={CustomPushScreensStack}

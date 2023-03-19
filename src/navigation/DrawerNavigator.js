@@ -1,22 +1,22 @@
 import * as React from 'react';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { createStackNavigator } from '@react-navigation/stack';
-import { getFocusedRouteNameFromRoute } from '@react-navigation/core';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import {createStackNavigator} from '@react-navigation/stack';
+import {getFocusedRouteNameFromRoute} from '@react-navigation/core';
 
 import DrawerContent from './DrawerContent';
 import TopTabsStack from './TopTabsStack';
 import SideMenuButton from './components/side-menu-button';
 import TopTabsSermonStack from './TopTabsSermonStack';
 import PrayerRequestScreen from './../screens/prayer-request-screen/prayer-request.screen';
-import { AppContext } from './../context/app.context';
+import {AppContext} from './../context/app.context';
 
-const { Navigator, Screen } = createStackNavigator();
+const {Navigator, Screen} = createStackNavigator();
 
-const DrawerStack = ({ route }) => {
+const DrawerStack = ({route}) => {
   const [state] = React.useContext(AppContext);
-  const { isFullScreenVideo } = state;
+  const {isFullScreenVideo} = state;
 
-  const getHeaderTitle = (route) => {
+  const getHeaderTitle = route => {
     const routeName = getFocusedRouteNameFromRoute(route) ?? 'Home';
     switch (routeName) {
       case 'Home':
@@ -31,7 +31,7 @@ const DrawerStack = ({ route }) => {
     <Navigator
       initialRouteName="Home"
       screenOptions={{
-        headerStyle: { backgroundColor: '#fff' },
+        headerStyle: {backgroundColor: '#fff'},
         headerLeftContainerStyle: {
           marginLeft: '1%',
         },
@@ -42,8 +42,7 @@ const DrawerStack = ({ route }) => {
           textAlign: 'center',
           marginRight: '15%',
         },
-      }}
-    >
+      }}>
       <Screen
         name="Home"
         component={TopTabsStack}
@@ -78,7 +77,7 @@ const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => {
   const [state] = React.useContext(AppContext),
-    { isFullScreenVideo } = state;
+    {isFullScreenVideo} = state;
   return (
     <Drawer.Navigator drawerContent={() => <DrawerContent />}>
       <Drawer.Screen
@@ -86,7 +85,7 @@ const DrawerNavigator = () => {
         component={DrawerStack}
         headerMode="none"
         // Stop side menu from sliding out when in fullscreen mode
-        options={{ swipeEnabled: isFullScreenVideo ? false : true }}
+        options={{swipeEnabled: isFullScreenVideo ? false : true}}
       />
     </Drawer.Navigator>
   );

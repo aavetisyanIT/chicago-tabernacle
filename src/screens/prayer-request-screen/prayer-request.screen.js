@@ -1,12 +1,6 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import {
-  Divider,
-  Text,
-  TextInput,
-  Button,
-  Checkbox,
-} from 'react-native-paper';
+import {View, StyleSheet} from 'react-native';
+import {Divider, Text, TextInput, Button, Checkbox} from 'react-native-paper';
 
 import PrayerScreenText from './components/prayer-screen-text';
 
@@ -27,7 +21,7 @@ export default function PrayerRequestScreen() {
     setInputOnFocus(true);
   };
 
-  const handleOnChangeText = (text) => {
+  const handleOnChangeText = text => {
     setText(text);
   };
 
@@ -57,18 +51,15 @@ export default function PrayerRequestScreen() {
           color="#bc9665"
           onPress={handleCheckBoxOnPress}
         />
-        <Text style={styles.checkboxLabelText}>
-          Please make anonymous
-        </Text>
+        <Text style={styles.checkboxLabelText}>Please make anonymous</Text>
       </View>
       <Divider />
       <Button
         style={styles.button}
-        labelStyle={{ color: 'white' }}
+        labelStyle={{color: 'white'}}
         mode="contained"
         disabled={!inputOnFocus}
-        onPress={handleSubmit}
-      >
+        onPress={handleSubmit}>
         Submit
       </Button>
     </View>
@@ -76,8 +67,8 @@ export default function PrayerRequestScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff' },
-  textInput: { backgroundColor: '#fff' },
+  container: {flex: 1, backgroundColor: '#fff'},
+  textInput: {backgroundColor: '#fff'},
   checkboxContainer: {
     flexDirection: 'row',
     margin: 15,
@@ -87,5 +78,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'Roboto-Light',
   },
-  button: { margin: 20 },
+  button: {margin: 20},
 });

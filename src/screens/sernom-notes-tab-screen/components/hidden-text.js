@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, Pressable } from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, StyleSheet, Pressable} from 'react-native';
 
-function HiddenText({ text, hiddenText }) {
-  const [isHiddenTextVisible, setIsHiddenTextVisible] =
-    useState(false);
+function HiddenText({text, hiddenText}) {
+  const [isHiddenTextVisible, setIsHiddenTextVisible] = useState(false);
 
   const signStartPosition = text.indexOf('%@');
   const textStart = text.slice(0, signStartPosition);
@@ -36,10 +35,10 @@ function HiddenText({ text, hiddenText }) {
 export default HiddenText;
 
 const styles = StyleSheet.create({
-  container: { flex: 1, flexDirection: 'row', flexWrap: 'wrap' },
-  text: { color: 'lightblue', fontSize: 16 },
-  hiddenText: { textDecorationLine: 'underline' },
-  textBlocker: (length) => ({
+  container: {flex: 1, flexDirection: 'row', flexWrap: 'wrap'},
+  text: {color: 'lightblue', fontSize: 16},
+  hiddenText: {textDecorationLine: 'underline'},
+  textBlocker: length => ({
     width: length * 8,
     height: 13,
     backgroundColor: 'lightgrey',

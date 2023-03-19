@@ -1,17 +1,12 @@
 import React from 'react';
-import {
-  FlatList,
-  RefreshControl,
-  StyleSheet,
-  View,
-} from 'react-native';
+import {FlatList, RefreshControl, StyleSheet, View} from 'react-native';
 
-import { getAllAnnouncements } from '../../utils/api';
+import {getAllAnnouncements} from '../../utils/api';
 import NewsCard from './components/news-card.component';
 
-function NewsTab({ navigation }) {
+function NewsTab({navigation}) {
   const [refreshing] = React.useState(false);
-  const [data, setData] = React.useState({ items: {} });
+  const [data, setData] = React.useState({items: {}});
 
   // Fetching all announcements
   React.useEffect(() => {
@@ -22,7 +17,7 @@ function NewsTab({ navigation }) {
     fetchData();
   }, []);
 
-  const newsCard = (announcement) => {
+  const newsCard = announcement => {
     let announcementData = null;
     switch (announcement.item.type) {
       case 'devo':
@@ -38,7 +33,7 @@ function NewsTab({ navigation }) {
         };
         break;
       case 'link':
-        announcementData = { type: 'link', id: null };
+        announcementData = {type: 'link', id: null};
         break;
     }
 
@@ -56,10 +51,10 @@ function NewsTab({ navigation }) {
   return (
     <View style={styles.container}>
       <FlatList
-        ItemSeparatorComponent={() => <View style={{ height: 8 }} />}
+        ItemSeparatorComponent={() => <View style={{height: 8}} />}
         data={data.items}
         renderItem={renderNewsCard}
-        keyExtractor={(announcement) => announcement.id}
+        keyExtractor={announcement => announcement.id}
         refreshControl={
           <RefreshControl
             refreshing={refreshing}

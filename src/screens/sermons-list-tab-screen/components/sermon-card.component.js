@@ -1,12 +1,12 @@
 import React from 'react';
-import { TouchableRipple } from 'react-native-paper';
-import { Text, View, StyleSheet } from 'react-native';
+import {TouchableRipple} from 'react-native-paper';
+import {Text, View, StyleSheet} from 'react-native';
 import database from '@react-native-firebase/database';
-import { useIsFocused } from '@react-navigation/native';
+import {useIsFocused} from '@react-navigation/native';
 
-import { AppContext } from './../../../context/app.context';
+import {AppContext} from './../../../context/app.context';
 
-const SermonCard = ({ sermon, navigation }) => {
+const SermonCard = ({sermon, navigation}) => {
   const handlePress = () => {
       navigation.navigate('TopTabsSermonStack', {
         screen: 'SERMON NOTES',
@@ -16,7 +16,7 @@ const SermonCard = ({ sermon, navigation }) => {
         },
       });
     },
-    [{ userUid }] = React.useContext(AppContext),
+    [{userUid}] = React.useContext(AppContext),
     [isViewed, setIsViewed] = React.useState(false),
     isFocused = useIsFocused(); // makes component rerender on navigation stack change
 
@@ -41,8 +41,7 @@ const SermonCard = ({ sermon, navigation }) => {
         onPress={handlePress}
         borderless={true}
         centered={true}
-        rippleColor="rgba(0, 0, 0, .32)"
-      >
+        rippleColor="rgba(0, 0, 0, .32)">
         <View style={styles.content}>
           <Text style={styles.headLine}>
             {sermon.item.headline}
@@ -59,10 +58,10 @@ const SermonCard = ({ sermon, navigation }) => {
 export default SermonCard;
 
 const styles = StyleSheet.create({
-  container: { backgroundColor: '#fff' },
-  content: { padding: 13 },
-  headLine: { fontFamily: 'Roboto-Medium' },
-  description: { fontFamily: 'Roboto-Thin' },
+  container: {backgroundColor: '#fff'},
+  content: {padding: 13},
+  headLine: {fontFamily: 'Roboto-Medium'},
+  description: {fontFamily: 'Roboto-Thin'},
   yellowDot: {
     width: 9,
     height: 9,

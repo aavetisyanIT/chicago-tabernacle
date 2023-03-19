@@ -1,22 +1,17 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import {
-  FlatList,
-  RefreshControl,
-  View,
-  StyleSheet,
-} from 'react-native';
+import React, {useState, useEffect, useCallback} from 'react';
+import {FlatList, RefreshControl, View, StyleSheet} from 'react-native';
 
 import SermonCard from './components/sermon-card.component';
-import { getAllArticles } from '../../utils/api';
+import {getAllArticles} from '../../utils/api';
 import SermonListHeader from './components/sermon-list-header.component';
 
-function SermonsListTab({ navigation }) {
+function SermonsListTab({navigation}) {
   const [refreshing] = useState(false);
 
   // empty object(including id) in the initial state is needed for the first render
   // till useEffect runs and fetches the data from API
   const [sermons, setSermons] = useState({
-    items: [{ image: { url: '' }, id: '1' }],
+    items: [{image: {url: ''}, id: '1'}],
   });
 
   // Fetch all articles
@@ -29,18 +24,14 @@ function SermonsListTab({ navigation }) {
   }, []);
 
   const renderSermon = useCallback(
-    (sermon) => (
-      <SermonCard sermon={sermon} navigation={navigation} />
-    ),
+    sermon => <SermonCard sermon={sermon} navigation={navigation} />,
     [navigation],
   );
 
   return (
     <View style={styles.container}>
       <FlatList
-        ItemSeparatorComponent={() => (
-          <View style={{ height: 1.5 }} />
-        )}
+        ItemSeparatorComponent={() => <View style={{height: 1.5}} />}
         ListHeaderComponent={
           <SermonListHeader
             navigation={navigation}
@@ -51,7 +42,7 @@ function SermonsListTab({ navigation }) {
         ListHeaderComponentStyle={styles.imageContainer}
         data={sermons.items}
         renderItem={renderSermon}
-        keyExtractor={(sermon) => {
+        keyExtractor={sermon => {
           return sermon.id;
         }}
         refreshControl={
@@ -74,5 +65,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  imageContainer: { width: '100%', height: 250 },
+  imageContainer: {width: '100%', height: 250},
 });

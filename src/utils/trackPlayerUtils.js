@@ -1,7 +1,7 @@
 import TrackPlayer from 'react-native-track-player';
 
 // Build timestamp
-export const timeFormat = (time) => {
+export const timeFormat = time => {
   const date = new Date(time * 1000);
   let hh = date.getUTCHours();
   let mm = date.getUTCMinutes();
@@ -25,10 +25,7 @@ export const timeFormat = (time) => {
 
 let lastTap = 0;
 let timerId = 0;
-export const handleDoubleTap = (
-  doubleTapCallback,
-  signleTapCallback,
-) => {
+export const handleDoubleTap = (doubleTapCallback, signleTapCallback) => {
   const now = Date.now();
   const DOUBLE_PRESS_DELAY = 300;
   if (lastTap && now - lastTap < DOUBLE_PRESS_DELAY) {

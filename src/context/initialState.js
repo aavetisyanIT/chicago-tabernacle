@@ -1,4 +1,4 @@
-import { Dimensions } from 'react-native';
+import {Dimensions} from 'react-native';
 
 const window = Dimensions.get('window');
 const screen = Dimensions.get('screen');
@@ -9,7 +9,7 @@ const initialState = {
   isFullScreenVideo: false,
   isVideoPaused: true,
   isOverlayView: true,
-  screenDimensions: { window, screen },
+  screenDimensions: {window, screen},
   articleVideoUrl: '',
   articleImageUrl: '',
   dismissTimerId: 0,

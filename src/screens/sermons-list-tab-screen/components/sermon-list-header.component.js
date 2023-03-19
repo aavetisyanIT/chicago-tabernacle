@@ -1,26 +1,23 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { View, StyleSheet } from 'react-native';
+import React, {useState, useEffect, useContext} from 'react';
+import {View, StyleSheet} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import database from '@react-native-firebase/database';
 
-import { AppContext } from '../../../context/app.context';
+import {AppContext} from '../../../context/app.context';
 
-const SermonListHeader = ({ sermonUrl, sermonId, navigation }) => {
-  const [isLatestSermonViewed, setIsLatestSermonViewed] =
-    useState(false);
-  const [{ userUid }] = useContext(AppContext);
+const SermonListHeader = ({sermonUrl, sermonId, navigation}) => {
+  const [isLatestSermonViewed, setIsLatestSermonViewed] = useState(false);
+  const [{userUid}] = useContext(AppContext);
 
   //listens for screen focus time to update new icon
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       try {
-        const userArticlesRef = database().ref(
-          `/users/${userUid}/articles`,
-        );
+        const userArticlesRef = database().ref(`/users/${userUid}/articles`);
         userArticlesRef
           .child(sermonId)
           .once('value')
-          .then((data) => {
+          .then(data => {
             if (data.val()) {
               const isArticleViewed = data.val().read;
               if (isArticleViewed === true) {
@@ -55,7 +52,7 @@ const SermonListHeader = ({ sermonUrl, sermonId, navigation }) => {
 export default SermonListHeader;
 
 const styles = StyleSheet.create({
-  image: { flex: 1 },
+  image: {flex: 1},
   circle: {
     height: 25,
     width: 25,

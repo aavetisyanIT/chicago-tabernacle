@@ -12,7 +12,7 @@ const {Navigator, Screen} = createStackNavigator();
 
 function RootStack() {
   return (
-    <Navigator mode="modal" headerMode="none">
+    <Navigator presentation="modal" screenOptions={{headerShown: false}}>
       <Screen
         name="DrawerNavigator"
         component={DrawerNavigator}
@@ -23,7 +23,6 @@ function RootStack() {
       <Screen
         name="CustomPushScreensStack"
         component={CustomPushScreensStack}
-        headerShown={false}
       />
       {/* Currently not used */}
       {/* <Screen name="NotLoggedInModal" component={NonLoggedInModal} /> */}

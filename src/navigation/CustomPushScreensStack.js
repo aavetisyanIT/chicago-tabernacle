@@ -8,7 +8,7 @@ const {Navigator, Screen} = createStackNavigator();
 
 function CustomPushScreensStack() {
   return (
-    <Navigator headerMode="none">
+    <Navigator screenOptions={{headerShown: false}}>
       <Screen
         name="Devotional"
         component={DevotionalTab}

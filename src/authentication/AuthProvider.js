@@ -15,6 +15,7 @@ const AuthProvider = ({children}) => {
 
   React.useEffect(() => {
     GoogleSignin.configure({
+      scopes: ['email'],
       webClientId: devEnvironmentVariables.DEV_WEBCLIENTID,
       offlineAccess: true,
       forceConsentPrompt: true,
@@ -53,10 +54,12 @@ const AuthProvider = ({children}) => {
   const onGoogleSignInPress = async () => {
     try {
       if (!user) {
+        // if google services are not installed propmt will pop up
         await GoogleSignin.hasPlayServices({
           showPlayServicesUpdateDialog: true,
-        }); // if google services are not installed propmt will pop up
+        });
         const userInfo = await GoogleSignin.signIn();
+
         dispatch({
           type: actionTypes.SET_USER,
           payload: userInfo.user,
@@ -67,6 +70,7 @@ const AuthProvider = ({children}) => {
         });
         const googleCredential = auth.GoogleAuthProvider.credential(
           userInfo.idToken,
+          userInfo.accessToken,
         );
         return auth().signInWithCredential(googleCredential);
       }

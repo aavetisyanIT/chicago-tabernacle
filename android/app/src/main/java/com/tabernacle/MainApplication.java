@@ -1,4 +1,4 @@
-package com.tabernacle;
+package com.chicago_tabernacle;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

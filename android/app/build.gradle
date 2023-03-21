@@ -94,9 +94,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.tabernacle"
+    namespace "com.chicago_tabernacle"
     defaultConfig {
-        applicationId "com.tabernacle"
+        applicationId "com.chicago_tabernacle"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

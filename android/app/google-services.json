@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1027043919366:android:d20002e60f0d34b9996587",
         "android_client_info": {
-          "package_name": "com.tabernacle"
+          "package_name": "com.chicago_tabernacle"
         }
       },
       "oauth_client": [
@@ -17,7 +17,7 @@
           "client_id": "1027043919366-orboquk60q94tb85eds13i1e3e147tkg.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.tabernacle",
+            "package_name": "com.chicago_tabernacle",
             "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
           }
         },

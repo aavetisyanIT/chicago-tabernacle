@@ -1,15 +1,11 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import TrackPlayer, {
-  TrackPlayerEvents,
-  STATE_PLAYING,
-  STATE_NONE,
-  STATE_PAUSED,
-} from 'react-native-track-player';
-import {
-  useTrackPlayerProgress,
+  useProgress,
   useTrackPlayerEvents,
-} from 'react-native-track-player/lib/hooks';
+  Event,
+  State,
+} from 'react-native-track-player';
 import Slider from '@react-native-community/slider';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -17,6 +13,8 @@ import {AppContext} from '../context/app.context';
 import {actionTypes} from '../context/action.types';
 import CustomButton from './custom-button';
 import {timeFormat, trackPlayerInit} from '../utils/trackPlayerUtils';
+
+const subscribedEvents = [Event.PlaybackState, Event.RemotePause];
 
 function CustomTrackPlayer({
   title,
@@ -38,9 +36,9 @@ function CustomTrackPlayer({
   const [sliderValue, setSliderValue] = React.useState(0);
   // flag to check whether the use is sliding the seekbar or not
   const [isSeeking, setIsSeeking] = React.useState(false);
-  // useTrackPlayerProgress is a hook which provides the current position
+  // useProgress is a hook which provides the current position
   // and duration of the track player. These values will update every 250ms
-  const {position, duration} = useTrackPlayerProgress(250);
+  const {position, duration} = useProgress(250);
 
   // Pause media when video starts playing
   React.useEffect(() => {
@@ -94,17 +92,17 @@ function CustomTrackPlayer({
     [],
   );
 
-  useTrackPlayerEvents([TrackPlayerEvents.PLAYBACK_STATE], event => {
-    if (event.state === STATE_PLAYING) {
+  useTrackPlayerEvents(subscribedEvents, event => {
+    if (event.state === State.Playing) {
       dispatch({
         type: actionTypes.SET_TRACK_PLAYING,
         payload: true,
       });
-    } else if (event.state === STATE_NONE) {
+    } else if (event.state === State.None) {
       hideTrackPlayer();
       setTimeStamp('00:00');
       setSliderValue(0);
-    } else if (event.state === STATE_PAUSED) {
+    } else if (event.state === State.Paused) {
       dispatch({
         type: actionTypes.SET_TRACK_PLAYING,
         payload: false,

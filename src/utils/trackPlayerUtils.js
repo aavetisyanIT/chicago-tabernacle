@@ -1,4 +1,4 @@
-import TrackPlayer from 'react-native-track-player';
+import TrackPlayer, {Capability} from 'react-native-track-player';
 
 // Build timestamp
 export const timeFormat = time => {
@@ -47,17 +47,13 @@ export const trackPlayerInit = async (url, trackId, title, image) => {
   TrackPlayer.updateOptions({
     stopWithApp: true,
     capabilities: [
-      TrackPlayer.CAPABILITY_PLAY,
-      TrackPlayer.CAPABILITY_PAUSE,
-      TrackPlayer.CAPABILITY_JUMP_FORWARD,
-      TrackPlayer.CAPABILITY_JUMP_BACKWARD,
-      TrackPlayer.CAPABILITY_STOP,
+      Capability.Play,
+      Capability.Pause,
+      Capability.JumpBackward,
+      Capability.JumpBackward,
+      Capability.Stop,
     ],
-    compactCapabilities: [
-      TrackPlayer.CAPABILITY_PLAY,
-      TrackPlayer.CAPABILITY_PAUSE,
-      TrackPlayer.CAPABILITY_STOP,
-    ],
+    compactCapabilities: [Capability.Play, Capability.Pause, Capability.Stop],
   });
   await TrackPlayer.add({
     id: trackId,

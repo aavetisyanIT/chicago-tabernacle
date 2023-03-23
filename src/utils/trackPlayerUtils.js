@@ -1,4 +1,7 @@
-import TrackPlayer, {Capability} from 'react-native-track-player';
+import TrackPlayer, {
+  AppKilledPlaybackBehavior,
+  Capability,
+} from 'react-native-track-player';
 
 // Build timestamp
 export const timeFormat = time => {
@@ -42,25 +45,33 @@ export const handleDoubleTap = (doubleTapCallback, signleTapCallback) => {
 
 // function to initialize the Track Player
 export const trackPlayerInit = async (url, trackId, title, image) => {
-  await TrackPlayer.setupPlayer();
-  // Controlling The Music From Outside
-  TrackPlayer.updateOptions({
-    stopWithApp: true,
-    capabilities: [
-      Capability.Play,
-      Capability.Pause,
-      Capability.JumpBackward,
-      Capability.JumpBackward,
-      Capability.Stop,
-    ],
-    compactCapabilities: [Capability.Play, Capability.Pause, Capability.Stop],
-  });
-  await TrackPlayer.add({
-    id: trackId,
-    url,
-    type: 'default',
-    title,
-    artwork: image,
-  });
-  return true;
+  try {
+    await TrackPlayer.setupPlayer();
+
+    // Controlling The Music From Outside
+    TrackPlayer.updateOptions({
+      android: {
+        appKilledPlaybackBehavior: AppKilledPlaybackBehavior.ContinuePlayback,
+      },
+      capabilities: [
+        Capability.Play,
+        Capability.Pause,
+        Capability.JumpBackward,
+        Capability.JumpBackward,
+        Capability.Stop,
+      ],
+      compactCapabilities: [Capability.Play, Capability.Pause, Capability.Stop],
+    });
+    await TrackPlayer.add({
+      id: trackId,
+      url,
+      type: 'default',
+      title,
+      artwork: image,
+    });
+    await TrackPlayer.play();
+    return true;
+  } catch (error) {
+    console.log('trackPlayerInit', error);
+  }
 };

@@ -55,21 +55,16 @@ function CustomTrackPlayer({
   React.useEffect(() => {
     // function to initialize the Track Player and pause video player
     const startPlayer = async () => {
-      try {
-        dispatch({
-          type: actionTypes.SET_PAUSE_VIDEO,
-          payload: true,
-        });
-        dispatch({
-          type: actionTypes.SET_OVERLAY_VIEW,
-          payload: true,
-        });
-        const isInit = await trackPlayerInit(url, trackId, title, image);
-        setIsTrackPlayerInit(isInit);
-        await TrackPlayer.play();
-      } catch (error) {
-        console.log(error.message);
-      }
+      dispatch({
+        type: actionTypes.SET_PAUSE_VIDEO,
+        payload: true,
+      });
+      dispatch({
+        type: actionTypes.SET_OVERLAY_VIEW,
+        payload: true,
+      });
+      const isInit = await trackPlayerInit(url, trackId, title, image);
+      setIsTrackPlayerInit(isInit);
     };
     if (trackPlayerVisible) startPlayer();
   }, [trackPlayerVisible, dispatch, image, title, trackId, url]);
@@ -87,7 +82,10 @@ function CustomTrackPlayer({
   // Unmount track player when leaving a sceen
   React.useEffect(
     () => () => {
-      TrackPlayer.destroy();
+      console.log('====================================');
+      console.log('reseting');
+      console.log('====================================');
+      TrackPlayer.reset();
     },
     [],
   );

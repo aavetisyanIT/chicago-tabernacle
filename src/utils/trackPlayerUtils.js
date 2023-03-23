@@ -47,11 +47,11 @@ export const handleDoubleTap = (doubleTapCallback, signleTapCallback) => {
 export const trackPlayerInit = async (url, trackId, title, image) => {
   try {
     await TrackPlayer.setupPlayer();
-
     // Controlling The Music From Outside
     TrackPlayer.updateOptions({
       android: {
-        appKilledPlaybackBehavior: AppKilledPlaybackBehavior.ContinuePlayback,
+        appKilledPlaybackBehavior:
+          AppKilledPlaybackBehavior.StopPlaybackAndRemoveNotification,
       },
       capabilities: [
         Capability.Play,
@@ -69,7 +69,6 @@ export const trackPlayerInit = async (url, trackId, title, image) => {
       title,
       artwork: image,
     });
-    await TrackPlayer.play();
     return true;
   } catch (error) {
     console.log('trackPlayerInit', error);

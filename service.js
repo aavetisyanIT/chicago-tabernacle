@@ -1,15 +1,10 @@
 /* eslint-disable no-undef */
 import TrackPlayer, {Event} from 'react-native-track-player';
 
-export async function playbackService() {
-  TrackPlayer.addEventListener(Event.RemotePlay, () => {
-    TrackPlayer.play();
-  });
+export async function PlaybackService() {
+  TrackPlayer.addEventListener(Event.RemotePlay, () => TrackPlayer.play());
 
-  TrackPlayer.addEventListener(Event.RemotePause, () => {
-    TrackPlayer.play();
-    TrackPlayer.pause();
-  });
+  TrackPlayer.addEventListener(Event.RemotePause, () => TrackPlayer.pause());
 
   TrackPlayer.addEventListener(Event.RemoteJumpForward, async () => {
     let newPosition = await TrackPlayer.getPosition();
@@ -29,4 +24,8 @@ export async function playbackService() {
     }
     TrackPlayer.seekTo(newPosition);
   });
+
+  TrackPlayer.addEventListener(Event.PlaybackState, state =>
+    console.log('state:', state),
+  );
 }

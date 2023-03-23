@@ -62,7 +62,7 @@ const SermonNoteListHeader = ({article}) => {
             showTrackPlayer={showAudioPlayer}
             hideTrackPlayer={hideAudioPlayer}
           />
-        ) : null}
+        ) : undefined}
       </View>
       <Divider style={styles.divider} />
     </>
@@ -75,5 +75,5 @@ const styles = StyleSheet.create({
   image: {height: 250, width: '100%'},
   headerContent: {paddingBottom: 0, padding: 13},
   description: {fontFamily: 'Roboto-Thin'},
-  divider: {marginBottom: 15, height: 3},
+  divider: {marginBottom: 15, marginTop: 10, height: 3},
 });

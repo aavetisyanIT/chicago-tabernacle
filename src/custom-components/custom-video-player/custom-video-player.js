@@ -5,7 +5,7 @@ import PlayerFullscreenProvider from './player-fullscreen-provider';
 import PlayerLayersProvider from './player-layers-provider';
 import {VideoPlayerContextProvider} from './video-player-context/video.player.context.provider';
 
-function CustomVideoPlayer() {
+export function CustomVideoPlayer() {
   return (
     <PlayerFullscreenProvider>
       <VideoPlayerContextProvider>
@@ -16,5 +16,3 @@ function CustomVideoPlayer() {
     </PlayerFullscreenProvider>
   );
 }
-
-export default CustomVideoPlayer;

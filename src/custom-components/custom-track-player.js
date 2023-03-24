@@ -18,7 +18,7 @@ import {timeFormat} from '../utils';
 
 const subscribedEvents = [Event.PlaybackState, Event.RemotePause];
 
-function CustomTrackPlayer(props) {
+export function CustomTrackPlayer(props) {
   const {
     title,
     url,
@@ -198,8 +198,6 @@ function CustomTrackPlayer(props) {
     />
   );
 }
-
-export default CustomTrackPlayer;
 
 const styles = StyleSheet.create({
   container: {

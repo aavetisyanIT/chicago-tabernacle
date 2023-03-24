@@ -3,10 +3,9 @@ import {Text, View, StyleSheet} from 'react-native';
 import {Divider} from 'react-native-paper';
 
 import FastImage from 'react-native-fast-image';
-import CustomTrackPlayer from '../../../custom-components/custom-track-player';
-import CustomVideoPlayer from './../../../custom-components/custom-video-player/custom-video-player';
 import {AppContext} from './../../../context/app.context';
 import {actionTypes} from './../../../context/action.types';
+import {CustomTrackPlayer, CustomVideoPlayer} from '../../../custom-components';
 
 const SermonNoteListHeader = ({article}) => {
   const [audioPlayerVisible, setAudioPlayerVisible] = useState(false);

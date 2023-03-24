@@ -11,8 +11,8 @@ import {AppContext} from '../../context/app.context';
 import {VideoPlayerContext} from './video-player-context/video.player.context';
 import {actionTypes} from '../../context/action.types';
 import MediaPlayer from './media-player';
-import {handleDoubleTap} from '../../utils/trackPlayerUtils';
 import {videoPlayerActionTypes} from './video-player-context/video.player.action.types';
+import {handleDoubleTap} from '../../utils';
 
 function PlayerLayersProvider(props) {
   const [state, dispatch] = React.useContext(AppContext);

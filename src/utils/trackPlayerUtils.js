@@ -1,8 +1,3 @@
-import TrackPlayer, {
-  AppKilledPlaybackBehavior,
-  Capability,
-} from 'react-native-track-player';
-
 // Build timestamp
 export const timeFormat = time => {
   const date = new Date(time * 1000);
@@ -41,36 +36,4 @@ export const handleDoubleTap = (doubleTapCallback, signleTapCallback) => {
     }, DOUBLE_PRESS_DELAY);
   }
   return null;
-};
-
-// function to initialize the Track Player
-export const trackPlayerInit = async (url, trackId, title, image) => {
-  try {
-    await TrackPlayer.setupPlayer();
-    // Controlling The Music From Outside
-    TrackPlayer.updateOptions({
-      android: {
-        appKilledPlaybackBehavior:
-          AppKilledPlaybackBehavior.StopPlaybackAndRemoveNotification,
-      },
-      capabilities: [
-        Capability.Play,
-        Capability.Pause,
-        Capability.JumpBackward,
-        Capability.JumpBackward,
-        Capability.Stop,
-      ],
-      compactCapabilities: [Capability.Play, Capability.Pause, Capability.Stop],
-    });
-    await TrackPlayer.add({
-      id: trackId,
-      url,
-      type: 'default',
-      title,
-      artwork: image,
-    });
-    return true;
-  } catch (error) {
-    console.log('trackPlayerInit', error);
-  }
 };

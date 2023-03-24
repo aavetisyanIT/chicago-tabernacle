@@ -1,7 +1,7 @@
 import React from 'react';
 import {FlatList, RefreshControl, StyleSheet, View} from 'react-native';
+import {getAllAnnouncements} from '../../utils';
 
-import {getAllAnnouncements} from '../../utils/api';
 import NewsCard from './components/news-card.component';
 
 function NewsTab({navigation}) {

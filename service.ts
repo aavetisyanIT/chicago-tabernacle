@@ -2,7 +2,9 @@
 import TrackPlayer, {Event} from 'react-native-track-player';
 
 export async function PlaybackService() {
-  TrackPlayer.addEventListener(Event.RemotePlay, () => TrackPlayer.play());
+  TrackPlayer.addEventListener(Event.RemotePlay, () => {
+    TrackPlayer.play();
+  });
 
   TrackPlayer.addEventListener(Event.RemotePause, () => TrackPlayer.pause());
 
@@ -24,8 +26,4 @@ export async function PlaybackService() {
     }
     TrackPlayer.seekTo(newPosition);
   });
-
-  TrackPlayer.addEventListener(Event.PlaybackState, state =>
-    console.log('state:', state),
-  );
 }

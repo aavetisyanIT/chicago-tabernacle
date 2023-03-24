@@ -2,7 +2,7 @@ import React, {useState, useEffect, useCallback} from 'react';
 import {FlatList, RefreshControl, View, StyleSheet} from 'react-native';
 
 import SermonCard from './components/sermon-card.component';
-import {getAllArticles} from '../../utils/api';
+import {getAllArticles} from '../../utils';
 import SermonListHeader from './components/sermon-list-header.component';
 
 function SermonsListTab({navigation}) {

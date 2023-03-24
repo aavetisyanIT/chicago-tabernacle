@@ -3,10 +3,9 @@ import {Text, View, StyleSheet} from 'react-native';
 import {Divider} from 'react-native-paper';
 
 import FastImage from 'react-native-fast-image';
-import CustomTrackPlayer from '../../../custom-components/custom-track-player';
-import CustomVideoPlayer from './../../../custom-components/custom-video-player/custom-video-player';
 import {AppContext} from './../../../context/app.context';
 import {actionTypes} from './../../../context/action.types';
+import {CustomTrackPlayer, CustomVideoPlayer} from '../../../custom-components';
 
 const SermonNoteListHeader = ({article}) => {
   const [audioPlayerVisible, setAudioPlayerVisible] = useState(false);
@@ -62,7 +61,7 @@ const SermonNoteListHeader = ({article}) => {
             showTrackPlayer={showAudioPlayer}
             hideTrackPlayer={hideAudioPlayer}
           />
-        ) : null}
+        ) : undefined}
       </View>
       <Divider style={styles.divider} />
     </>
@@ -75,5 +74,5 @@ const styles = StyleSheet.create({
   image: {height: 250, width: '100%'},
   headerContent: {paddingBottom: 0, padding: 13},
   description: {fontFamily: 'Roboto-Thin'},
-  divider: {marginBottom: 15, height: 3},
+  divider: {marginBottom: 15, marginTop: 10, height: 3},
 });

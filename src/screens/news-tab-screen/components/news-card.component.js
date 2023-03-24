@@ -4,7 +4,7 @@ import {TouchableRipple} from 'react-native-paper';
 import FastImage from 'react-native-fast-image';
 
 import CustomCard from '../../../custom-components/custom-card';
-import {getAllArticles} from '../../../utils/api';
+import {getAllArticles} from '../../../utils';
 
 function NewsCard({announcement, navigation, announcementData}) {
   const [articles, setArticles] = React.useState({});

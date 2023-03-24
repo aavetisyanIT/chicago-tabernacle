@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useContext, useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import TrackPlayer, {
   useProgress,
@@ -12,66 +12,84 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {AppContext} from '../context/app.context';
 import {actionTypes} from '../context/action.types';
 import CustomButton from './custom-button';
-import {timeFormat, trackPlayerInit} from '../utils/trackPlayerUtils';
+import {TrackInitialize} from '../utils/';
+import {QueueTracksService} from '../utils';
+import {timeFormat} from '../utils';
 
 const subscribedEvents = [Event.PlaybackState, Event.RemotePause];
 
-function CustomTrackPlayer({
-  title,
-  url,
-  trackPlayerVisible,
-  showTrackPlayer,
-  hideTrackPlayer,
-  trackId,
-  image,
-}) {
+export function CustomTrackPlayer(props) {
+  const {
+    title,
+    url,
+    trackPlayerVisible,
+    showTrackPlayer,
+    hideTrackPlayer,
+    trackId,
+    image,
+  } = props;
   // state to manage whether track player is initialized or not
   // The play button stays disabled if the Track Player isn't initialized.
-  const [state, dispatch] = React.useContext(AppContext);
-  const {isTrackPlaying, isVideoPaused} = state;
-  const [isTrackPlayerInit, setIsTrackPlayerInit] = React.useState(false);
-  const [timeStamp, setTimeStamp] = React.useState('00:00');
-  const [trackTime, setTrackTime] = React.useState('00:00');
+  const [{isTrackPlaying, isVideoPaused}, dispatch] = useContext(AppContext);
+  const [isTrackInitialed, setIsTrackInitialed] = useState(false);
+  const [timeStamp, setTimeStamp] = useState('00:00');
+  const [trackTime, setTrackTime] = useState('00:00');
   // the value of the slider should be between 0 and 1
-  const [sliderValue, setSliderValue] = React.useState(0);
+  const [sliderValue, setSliderValue] = useState(0);
   // flag to check whether the use is sliding the seekbar or not
-  const [isSeeking, setIsSeeking] = React.useState(false);
+  const [isSeeking, setIsSeeking] = useState(false);
   // useProgress is a hook which provides the current position
   // and duration of the track player. These values will update every 250ms
   const {position, duration} = useProgress(250);
 
+  // initialize TrackPlayer on page mount
+  useEffect(() => {
+    let unmounted = false;
+    (async () => {
+      await TrackInitialize();
+      setIsTrackInitialed(true);
+      if (unmounted) return;
+    })();
+    return function cleanup() {
+      TrackPlayer.reset();
+      unmounted = true;
+    };
+  }, [url, trackId, title, image]);
+
   // Pause media when video starts playing
-  React.useEffect(() => {
-    if (!isVideoPaused && isTrackPlayerInit) {
+  useEffect(() => {
+    if (!isVideoPaused && isTrackInitialed) {
       dispatch({
         type: actionTypes.SET_TRACK_PLAYING,
         payload: false,
       });
-      TrackPlayer.pause();
+      (async () => {
+        await TrackPlayer.pause();
+      })();
     }
-  }, [isVideoPaused, dispatch, isTrackPlayerInit]);
+  }, [isVideoPaused, dispatch, isTrackInitialed]);
 
-  // initialize the TrackPlayer when "AUDIO PLAYER" is clicked
-  React.useEffect(() => {
-    // function to initialize the Track Player and pause video player
-    const startPlayer = async () => {
-      dispatch({
-        type: actionTypes.SET_PAUSE_VIDEO,
-        payload: true,
-      });
-      dispatch({
-        type: actionTypes.SET_OVERLAY_VIEW,
-        payload: true,
-      });
-      const isInit = await trackPlayerInit(url, trackId, title, image);
-      setIsTrackPlayerInit(isInit);
-    };
-    if (trackPlayerVisible) startPlayer();
-  }, [trackPlayerVisible, dispatch, image, title, trackId, url]);
+  //set and play track
+  useEffect(() => {
+    if (trackPlayerVisible) {
+      (async () => {
+        await QueueTracksService(url, trackId, title, image);
+        await TrackPlayer.play();
+        dispatch({
+          type: actionTypes.SET_PAUSE_VIDEO,
+          payload: true,
+        });
+        dispatch({
+          type: actionTypes.SET_OVERLAY_VIEW,
+          payload: true,
+        });
+      })();
+    }
+  }, [trackPlayerVisible, dispatch, url, trackId, title, image]);
 
   // this hook updates the value of the slider whenever
   // the current position of the song changes
-  React.useEffect(() => {
+  useEffect(() => {
     if (!isSeeking && position && duration) {
       setSliderValue(position / duration);
     }
@@ -79,17 +97,7 @@ function CustomTrackPlayer({
     setTrackTime(timeFormat(duration));
   }, [position, duration, isSeeking]);
 
-  // Unmount track player when leaving a sceen
-  React.useEffect(
-    () => () => {
-      console.log('====================================');
-      console.log('reseting');
-      console.log('====================================');
-      TrackPlayer.reset();
-    },
-    [],
-  );
-
+  //The subscription is removed when the component unmounts
   useTrackPlayerEvents(subscribedEvents, event => {
     if (event.state === State.Playing) {
       dispatch({
@@ -141,11 +149,6 @@ function CustomTrackPlayer({
     }
   };
 
-  // this function is called when the user starts to slide the seekbar
-  const slidingStarted = () => {
-    setIsSeeking(true);
-  };
-
   // this function is called when the user stops sliding the seekbar
   const slidingCompleted = async value => {
     try {
@@ -174,7 +177,7 @@ function CustomTrackPlayer({
         // thumbImage size can't be configured by props
         // it depends on size of the image in thumbImage prop
         thumbImage={require('../assets/track_player_thumb_size_17.png')}
-        onSlidingStart={slidingStarted}
+        onSlidingStart={() => setIsSeeking(true)}
         onSlidingComplete={slidingCompleted}
       />
       <Text style={styles.text}>{trackTime}</Text>
@@ -195,8 +198,6 @@ function CustomTrackPlayer({
     />
   );
 }
-
-export default CustomTrackPlayer;
 
 const styles = StyleSheet.create({
   container: {

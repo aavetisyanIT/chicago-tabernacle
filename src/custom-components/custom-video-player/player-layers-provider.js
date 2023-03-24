@@ -8,10 +8,10 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {AppContext} from '../../context/app.context';
-import {VideoPlayerContext} from './video-player-context/video.player.context';
+import {VideoPlayerContext} from './video-player-context';
 import {actionTypes} from '../../context/action.types';
 import MediaPlayer from './media-player';
-import {videoPlayerActionTypes} from './video-player-context/video.player.action.types';
+import {videoPlayerActionTypes} from './video-player-context';
 import {handleDoubleTap} from '../../utils';
 
 function PlayerLayersProvider(props) {

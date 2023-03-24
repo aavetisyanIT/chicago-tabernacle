@@ -42,11 +42,9 @@ function PlayerFullscreenProvider(props) {
       });
     };
 
-    Dimensions.addEventListener('change', onScreenRotation);
+    const cleanup = Dimensions.addEventListener('change', onScreenRotation);
     toggleScreenModes();
-    return () => {
-      Dimensions.removeEventListener('change', onScreenRotation);
-    };
+    return () => cleanup.remove();
   }, [isFullScreenVideo, dismissTimerId, dispatch]);
 
   React.useEffect(() => {

@@ -14,7 +14,7 @@ import MediaPlayer from './media-player';
 import {videoPlayerActionTypes} from './video-player-context';
 import {handleDoubleTap} from '../../utils';
 
-function PlayerLayersProvider(props) {
+function PlayerLayersProvider({children}) {
   const [state, dispatch] = React.useContext(AppContext);
   const [videoPlayerState, dispatchToVideoPlayer] =
     React.useContext(VideoPlayerContext);
@@ -154,7 +154,7 @@ function PlayerLayersProvider(props) {
               onPress={handleSkipForward_10}
               style={styles.icon}
             />
-            <View style={styles.childrenContainer}>{props.children}</View>
+            <View style={styles.childrenContainer}>{children}</View>
           </Pressable>
         ) : (
           /* Hidden View Controllers */

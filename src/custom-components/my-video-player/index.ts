@@ -1,1 +1,1 @@
-export * from './my-video-player';
+export * from './video-player';

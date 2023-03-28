@@ -1,6 +1,6 @@
 import React from 'react';
 import {Dimensions, StyleSheet, View, Animated, Easing} from 'react-native';
-import Orientation from 'react-native-orientation';
+//import Orientation from 'react-native-orientation';
 
 import {AppContext} from '../../context/app.context';
 import {actionTypes} from '../../context/action.types';
@@ -19,14 +19,14 @@ function PlayerFullscreenProvider(props) {
   React.useEffect(() => {
     const toggleScreenModes = () => {
       if (isFullScreenVideo) {
-        Orientation.lockToLandscape();
+        //Orientation.lockToLandscape();
         clearTimeout(dismissTimerId);
         dispatch({
           type: actionTypes.SET_OVERLAY_VIEW,
           payload: false,
         });
       } else {
-        Orientation.lockToPortrait();
+        //Orientation.lockToPortrait();
         clearTimeout(dismissTimerId);
         dispatch({
           type: actionTypes.SET_OVERLAY_VIEW,

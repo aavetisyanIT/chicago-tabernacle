@@ -5,11 +5,7 @@ import {Divider} from 'react-native-paper';
 import FastImage from 'react-native-fast-image';
 import {AppContext} from './../../../context/app.context';
 import {actionTypes} from './../../../context/action.types';
-import {
-  CustomTrackPlayer,
-  MyVideoPlayer,
-  CustomVideoPlayer,
-} from '../../../custom-components';
+import {CustomTrackPlayer, VideoPlayer} from '../../../custom-components';
 
 const SermonNoteListHeader = ({article}) => {
   const [audioPlayerVisible, setAudioPlayerVisible] = useState(false);
@@ -40,8 +36,7 @@ const SermonNoteListHeader = ({article}) => {
   return (
     <>
       {videoUrl ? (
-        // <CustomVideoPlayer />
-        <MyVideoPlayer />
+        <VideoPlayer />
       ) : (
         <FastImage
           source={{

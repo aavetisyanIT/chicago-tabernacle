@@ -1,6 +1,8 @@
 import {actionTypes} from './action.types';
 
-const reducer = (state, action) => {
+//TODO: NEED TO TYPE STATE AND ACTION IN REDUCER FUNCTION
+
+const reducer = (state: any, action: any) => {
   switch (action.type) {
     case actionTypes.SET_USER:
       return {...state, user: action.payload};

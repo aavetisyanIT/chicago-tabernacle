@@ -1,6 +1,7 @@
 declare module 'react-native-video-controls' {
   import * as React from 'react';
   import {VideoProperties} from 'react-native-video';
+  import {ViewStyle, StyleProp} from 'react-native';
 
   type VideoControlsProps = {
     onEnterFullscreen?: () => void;
@@ -25,6 +26,7 @@ declare module 'react-native-video-controls' {
     disableVolume?: boolean;
     disableTimer?: boolean;
     disableBack?: boolean;
+    videoStyle?: StyleProp<ViewStyle> | undefined;
   };
 
   export default class Video extends React.Component<

@@ -13,6 +13,8 @@ declare module 'react-native-video-controls' {
     onBack?: () => void;
     onEnd?: () => void;
     toggleResizeModeOnFullscreen?: boolean;
+    controlAnimationTiming?: number;
+    scrubbing?: number;
     controlTimeout?: number;
     showOnStart?: boolean;
     showTimeRemaining?: boolean;

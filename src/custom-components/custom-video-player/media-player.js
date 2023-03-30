@@ -3,8 +3,8 @@ import Video from 'react-native-video';
 
 import {AppContext} from '../../context/app.context';
 import {actionTypes} from '../../context/action.types';
-import {VideoPlayerContext} from './video-player-context/video.player.context';
-import {videoPlayerActionTypes} from './video-player-context/video.player.action.types';
+import {VideoPlayerContext} from './video-player-context';
+import {videoPlayerActionTypes} from './video-player-context';
 
 function MediaPlayer() {
   const [state, dispatch] = React.useContext(AppContext);

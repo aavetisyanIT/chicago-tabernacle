@@ -8,13 +8,13 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {AppContext} from '../../context/app.context';
-import {VideoPlayerContext} from './video-player-context/video.player.context';
+import {VideoPlayerContext} from './video-player-context';
 import {actionTypes} from '../../context/action.types';
 import MediaPlayer from './media-player';
-import {videoPlayerActionTypes} from './video-player-context/video.player.action.types';
+import {videoPlayerActionTypes} from './video-player-context';
 import {handleDoubleTap} from '../../utils';
 
-function PlayerLayersProvider(props) {
+function PlayerLayersProvider({children}) {
   const [state, dispatch] = React.useContext(AppContext);
   const [videoPlayerState, dispatchToVideoPlayer] =
     React.useContext(VideoPlayerContext);
@@ -154,7 +154,7 @@ function PlayerLayersProvider(props) {
               onPress={handleSkipForward_10}
               style={styles.icon}
             />
-            <View style={styles.childrenContainer}>{props.children}</View>
+            <View style={styles.childrenContainer}>{children}</View>
           </Pressable>
         ) : (
           /* Hidden View Controllers */

@@ -7,6 +7,7 @@ import {
   ScaledSize,
   Easing,
 } from 'react-native';
+import Orientation from 'react-native-orientation-locker';
 
 import {AppContext} from '../../context/app.context';
 import {actionTypes} from '../../context/action.types';
@@ -25,24 +26,6 @@ export const PlayerFullscreenProvider: FC<{children: ReactNode}> = ({
   // This useEffect needs to be above others so overlay wouldn't
   // be overriden to false
   useEffect(() => {
-    const toggleScreenModes = () => {
-      if (isFullScreenVideo) {
-        //Orientation.lockToLandscape();
-        clearTimeout(dismissTimerId);
-        dispatch({
-          type: actionTypes.SET_OVERLAY_VIEW,
-          payload: false,
-        });
-      } else {
-        //Orientation.lockToPortrait();
-        clearTimeout(dismissTimerId);
-        dispatch({
-          type: actionTypes.SET_OVERLAY_VIEW,
-          payload: false,
-        });
-      }
-    };
-
     const onScreenRotation = ({
       window,
       screen,
@@ -57,28 +40,42 @@ export const PlayerFullscreenProvider: FC<{children: ReactNode}> = ({
     };
 
     const cleanup = Dimensions.addEventListener('change', onScreenRotation);
-    toggleScreenModes();
+
+    //Toggle Screen Modes
+    (() => {
+      if (isFullScreenVideo) {
+        Orientation.lockToLandscape();
+        clearTimeout(dismissTimerId);
+        dispatch({
+          type: actionTypes.SET_OVERLAY_VIEW,
+          payload: false,
+        });
+      } else {
+        Orientation.lockToPortrait();
+        clearTimeout(dismissTimerId);
+        dispatch({
+          type: actionTypes.SET_OVERLAY_VIEW,
+          payload: false,
+        });
+      }
+    })();
+
     return () => cleanup.remove();
   }, [isFullScreenVideo, dismissTimerId, dispatch]);
 
   React.useEffect(() => {
     Animated.timing(width, {
       toValue: screenWidth * 0.57,
-      duration: 0,
+      duration: 1500,
       easing: Easing.linear,
       useNativeDriver: false,
     }).start();
     Animated.timing(height, {
       toValue: screenWidth,
-      duration: 0,
+      duration: 1500,
       easing: Easing.linear,
       useNativeDriver: false,
     }).start();
-    // Show overlay on initial screen load
-    dispatch({
-      type: actionTypes.SET_OVERLAY_VIEW,
-      payload: true,
-    });
   }, [dispatch, height, screenWidth, width]);
 
   return (
@@ -87,7 +84,8 @@ export const PlayerFullscreenProvider: FC<{children: ReactNode}> = ({
         isFullScreenVideo
           ? {
               flex: 1,
-              height: screenWidth,
+              height: width,
+              width: height,
             }
           : {
               flex: 1,
